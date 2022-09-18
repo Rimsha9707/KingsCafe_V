@@ -1,0 +1,51 @@
+﻿@model IEnumerable<KingsCafe_V2.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create","Adm_Categories")">Create</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Image
+        </th>
+        <th>
+            Details
+        </th>
+        <th>
+            Status
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.Name
+        </td>
+        <td>
+            <img src="@item.Image" width="100" height="100" />
+        </td>
+        
+        <td>
+            @item.Status
+        </td>
+        <td>
+            <a href="@Url.Action("Edit","Adm_Categories", new { id = item.CatID })" class="btn btn-primary glyphicon glyphicon-edit"></a> |
+            <a href="@Url.Action("Details","Adm_Categories", new { id = item.CatID })" class="btn btn-success glyphicon glyphicon-book"></a> |
+            <a href="@Url.Action("Delete","Adm_Categories", new { id = item.CatID })" class="btn btn-danger glyphicon glyphicon-remove"></a>
+
+        </td>
+    </tr>
+}
+
+</table>

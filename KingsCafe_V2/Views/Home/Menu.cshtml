@@ -1,0 +1,166 @@
+@using KingsCafe_V2.Models
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+<div id="content">
+    <section class="banner dark">
+        <div id="menu-parallax">
+            <div class="bcg background41"
+                 data-center="background-position: 50% 0px;"
+                 data-bottom-top="background-position: 50% 100px;"
+                 data-top-bottom="background-position: 50% -100px;"
+                 data-anchor-target="#menu-parallax">
+                <div class="bg-transparent">
+                    <div class="banner-content">
+                        <div class="container">
+                            <div class="slider-content  ">
+
+                                <h1>Menu</h1>
+                                <p>Your Taste is Our Goal</p>
+                                <ol class="breadcrumb">
+                                    <li><a href="@Url.Action("indexcustomer","home")">Home</a></li>
+                                    <li>Menu</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- Service parallax -->
+    </section>
+    <!-- Menu Grid
+    ============================================= -->
+    <div class="menu_grid our-menu text-center padding-b-70">
+        <!-- Menu Bar -->
+        <div class="menu-bar dark">
+            <!-- menu Filter
+                        ============================================= -->
+            <ul id="menu-fillter" class="clearfix">
+                <li><a href="/Home/Menu" > ALL </a></li>
+                @foreach (var c in (List<Category>)ViewBag.Cats)
+                {
+                    <li><a href="/Home/Menu/@c.CatID" >@c.Name</a></li>
+                }
+            </ul>
+            <!-- #menu-filter end -->
+        </div>
+        <!-- End menu bar -->
+        <!-- Menu Items
+                      ============================================= -->
+        <div class="container mt60">
+            <!-- Menu Items Masonary Content -->
+            <div id="menu-items" class="masonry-content menu-type dark clearfix">
+                <!-- Menu Item -->
+                @foreach (var item in Model)
+                {
+                    
+                        <article class="menu-item col-md-4 col-sm-6 col-xs-12 pf-desert">                 
+                            <!-- Overlay Content -->
+                            <div class="overlay_content overlay-menu">
+                                <!-- Overlay Item -->
+                                <div class="overlay_item">
+                                    <span class="label"></span> <img src="@Url.Content(item.Image)" alt="" style="width:100%; height:300px">
+                                    <!-- Overlay -->
+                                    <div class="overlay">
+                                        <!-- Icons -->
+                                        <div class="icons">
+                                            <h3>@item.Name</h3>
+
+                                            <h3>RS: @item.SalePrice</h3>
+                                            <!-- Rating -->
+                                            @*<fieldset class="rating">
+                                                <span class="active"><i class="fa fa-star"></i></span> <span class="active"><i class="fa fa-star"></i></span> <span class="active"><i class="fa fa-star"></i></span> <span class="active"><i class="fa fa-star"></i></span> <span><i class="fa fa-star"></i></span>
+                                            </fieldset>*@
+                                            <!-- End Rating -->
+                                            <!-- Buttons -->
+                                            <div class="button"> <a class="btn btn-gold" title="Cart" href="/Home/AddtoCart/@item.ItemID"><i title="Cart" class="fa fa-shopping-cart"></i></a> <a class="btn btn-gold" title="Custom" id="@item.ItemID" name="@item.Name" onclick="Ingredient(this)" data-target="#exampleModal"><i class="fa fa-link" ></i></a> </div>
+                                            <!-- End Buttons -->
+                                            <a class="close-overlay hidden">x</a>
+                                        </div>
+                                        <!-- End Icons -->
+                                    </div>
+                                    <!-- End Overlay -->
+                                </div>
+                                <!-- End Overlay Item -->
+                            </div>
+                            <!-- End Overlay Content -->
+                        </article>
+                    
+                }
+            </div>
+            <!-- End Menu Content -->
+        </div>
+        <!-- #menu end -->
+        <a href="#" class="btn btn-gold mt30">View more</a>
+    </div>
+    <!-- End Menu Grid -->
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Customize the Ingredients</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">Product Name:</label>
+                        <input type="hidden" class="form-control" id="proid">
+                        <input type="text" class="form-control" readonly id="proname">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="control-label">Ingredient:</label>
+                        <select onchange="showCheckbox()" class="form-control" id="ingredient">
+
+                            <option selected>----Select Ingredient----</option>
+                           
+                            @foreach (var item in (List<Category>)ViewBag.Ing)
+                            {
+                                   
+                                <option class="ck_ing " data-id="@item.CatID" value="@item.CatID"> @item.Name </option>
+                            }
+
+                        </select>
+                        
+                        @*<input class="form-control" type="text" id="Ingredient" />*@ 
+                        @*<input class="form-control" type="number" min="1" name="qty" />*@
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    function ChangeIngredient()
+    {
+        $.ajax({
+            url: '/Home/ChangeIngredient?id=' + $('#class').val(),
+            success: function (response) {
+                //console.log(response);
+                $('#ingredient').html(response);
+            },
+        }
+        )
+    }
+    function Ingredient(obj) {
+        var id = obj.id;
+        var name = obj.name;
+
+        $("#proid").val(id);
+        $("#proname").val(name);
+        $("#exampleModal").modal()
+    }
+</script>

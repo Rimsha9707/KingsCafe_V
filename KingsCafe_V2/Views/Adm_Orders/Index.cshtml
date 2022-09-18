@@ -1,0 +1,85 @@
+﻿@model IEnumerable<KingsCafe_V2.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryDate)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentMethod)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentMethod)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            
+            <a href="@Url.Action("Details","Adm_Orders", new { id = item.OrderID })" class="btn btn-success glyphicon glyphicon-book"></a> |
+            <a href="@Url.Action("Delete","Adm_Orders", new { id = item.OrderID })" class="btn btn-danger glyphicon glyphicon-remove"></a>
+
+        </td>
+    </tr>
+}
+
+</table>

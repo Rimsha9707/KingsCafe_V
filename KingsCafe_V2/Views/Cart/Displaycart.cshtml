@@ -1,0 +1,140 @@
+@using KingsCafe_V2.Models;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<FoodItem> pro = (List<FoodItem>)Session["cart"];
+    int rowno = -1;
+    decimal total = 0;
+
+}
+
+
+   
+<div id="wrapper">
+    <section class="banner dark">
+        <div id="cart-parallax">
+            <div class="bcg background39"
+                 data-center="background-position: 50% 0px;"
+                 data-bottom-top="background-position: 50% 100px;"
+                 data-top-bottom="background-position: 50% -100px;"
+                 data-anchor-target="#cart-parallax">
+                <div class="bg-transparent">
+                    <div class="banner-content">
+                        <div class="container">
+                            <div class="slider-content  ">
+                                
+                                <h1>Cart</h1>
+                                <p>Shop With Us</p>
+                                <ol class="breadcrumb">
+                                    <li><a href="index01.html">Home</a></li>
+                                    <li>Cart</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+         
+    </section>
+    
+</div>
+
+    <div id="content">
+        <!-- Carts
+        ============================================= -->
+        <section class="carts text-center padding-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Table carts -->
+                        <table class="table table-striped table-responsive table-cart">
+                            <thead>
+                                <tr>
+                                    <th style="width:40%">Product Image</th>
+                                    <th style="width:15%">Price</th>
+                                    <th style="width:20%">Quantity</th>
+                                    <th style="width:25%">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in pro)
+                                {
+                                    total += item.SalePrice * item.Quantity;
+
+                                    rowno++;
+
+                                    <tr>
+                                        <td><a href="~/content/customer/menu_single.html"><img src="@Url.Content(item.Image)" style="width:100px; height:100px"> @item.Name</a> </td>
+                                        <td>RS: @item.SalePrice</td>
+                                        <td>
+                                            <!-- input group minus & plus-->
+                                            
+                                        <div class="input-group plus-minus">
+                                            <span class="input-group-btn">
+                                            <a class="btn btn-default " data-type="minus" data-field="quant[1]" href="@Url.Action("Minusfromcart","cart", new { id=rowno})"> <span class="fa fa-minus"></span> </a>
+                                            </span>
+                                        <input type="number" name="quant[1]" readonly class="form-control input-number" value="@item.Quantity" min="1" max="20">
+                                            <span class="input-group-btn">
+                                            <a class="btn btn-default " data-type="plus" data-field="quant[1]" href="@Url.Action("plustocart","cart", new { id=rowno})"> <span class="fa fa-plus"></span> </a>
+                                            </span>
+                                        </div>
+                                            <!-- End input group minus & plus -->
+                                        </td>
+                                        <td><span class="total">RS: @(item.SalePrice*item.Quantity) </span> <a class="pull-right" href="@Url.Action("Removefromcart","Cart", new { id=rowno})"><i class="fa fa-times"></i></a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <!-- End Table carts  -->
+                    </div>
+                    <!-- Carts content -->
+                    <div class="col-md-12 carts-content">
+                        <div class="row">
+                            <!-- Left side -->
+                            <div class="col-md-5 left-side">
+
+                                <!-- Carts total -->
+                                <div class="carts-total text-left margin-tb-60">
+                                    <h3>Carts Total</h3>
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <td>Cart Subtotal</td>
+                                                <td>RS:@total </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Shipping and Handling</td>
+                                                <td>RS:100 </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Order Total</td>
+                                                <td>RS: @(total+100)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- Carts total -->
+                            </div>
+                            <!-- End Left side -->
+                            <!-- Right side -->
+                            <div class="col-md-5 col-md-offset-2 right-side">
+                                <div class="form-group text-right checkout">
+                                    <a href="@Url.Action("menu","home")" class="btn  btn-black">UPDATE</a>
+                                    <a href="@Url.Action("Checkout","Cart")"class="btn btn-black"> Proceed to Checkout</a>
+                                </div>
+                                <!-- Carts total -->
+                                <!-- Carts total -->
+                            </div>
+                            <!--End Right side 
+                        </div>
+                    </div>
+                    <!--End Carts content -->
+                </div>
+            </div>
+        
+                    
+        </section>
+        <!-- End Carts -->
+    </div>

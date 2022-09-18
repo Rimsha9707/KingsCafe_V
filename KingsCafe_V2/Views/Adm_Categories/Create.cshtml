@@ -1,0 +1,78 @@
+﻿@model KingsCafe_V2.Models.Category
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Create</h2>
+
+<form action="/Adm_Categories/Create" method="post" enctype="multipart/form-data">
+
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Category</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type='file' style="display:none" name="imgInp" id="imgInp" onchange="readURL(this)" />
+                <img id="blah" onclick="document.getElementById('imgInp').click()" src="~/Content/Admin/images.png" height="100" width="100" />
+                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a href="@Url.Action("Index","Adm_Categories") " class="btn btn-primary glyphicon glyphicon-backward"> </a>
+</div>
+
+@*//------------------------Image Icon Picker-------------------------//*@
+
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInp").change(function () {
+        readURL(this);
+    });
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,151 @@
+@using KingsCafe_V2.Models
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<CartItem> pro = new List<CartItem>();
+    if (Session["cart"] != null)
+    {
+        pro = (List<CartItem>)Session["cart"];
+
+    }
+    decimal total = 0;
+}
+
+
+<form action="/Home/OrderBooked" method="post">
+
+    <div id="content">
+
+        <section class="banner dark">
+            <div id="myccount-parallax">
+                <div class="bcg background39"
+                     data-center="background-position: 50% 0px;"
+                     data-bottom-top="background-position: 50% 100px;"
+                     data-top-bottom="background-position: 50% -100px;"
+                     data-anchor-target="#myccount-parallax">
+                    <div class="bg-transparent">
+                        <div class="banner-content">
+                            <div class="container">
+                                <div class="slider-content  ">
+
+                                    <h1>Check out</h1>
+                                    <p>Every Thing You Know About Majesty</p>
+                                    <ol class="breadcrumb">
+                                        <li><a href="index01.html">Home</a></li>
+                                        <li>Check out</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Banner content -->
+                    </div>
+                    <!-- End bg trnsparent -->
+                </div>
+            </div>
+            <!-- Service parallax -->
+        </section>
+        <!-- My Account
+        ============================================= -->
+        <section class="myaccount text-left padding-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Table carts -->
+                        <table class="table table-striped table-responsive table-cart">
+                            <thead>
+                                <tr>
+                                    <th style="width:40%">Product Image</th>
+                                    <th style="width:15%">Price</th>
+                                    <th style="width:20%">Quantity</th>
+                                    <th style="width:25%">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in pro)
+                                {
+                                    total += (decimal)item.foodItem.SalePrice * item.quantity;
+                                    <tr>
+                                        <td>
+                                            <a href="menu_single.html">
+                                                <img src="@Url.Content(item.foodItem.Image)" style="width:100px; height:100px;"
+                                                     alt="">@item.foodItem.Name
+                                                </a>
+                                            </td>
+                                            <td>Rs. @item.foodItem.SalePrice</td>
+                                            <td>
+                                                @item.quantity
+
+                                            </td>
+                                            <td>
+                                                <span class="total">
+                                                    Rs.
+                                                    @(item.foodItem.SalePrice * item.quantity)
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    }
+                            </tbody>
+                        </table>
+                        <!-- End Table carts -->
+                    </div>
+                    <!-- Carts content -->
+                    <div class="col-md-12 carts-content">
+                        <div class="row">
+                            <!-- Cart Total -->
+                            <div class="col-md-4 carts-total text-left">
+                                <h3>Carts Total</h3>
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td>Cart Subtotal</td>
+                                            <td>Rs. @total</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Shipping and Handling</td>
+                                            <td>Rs. 200</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Order Total</td>
+                                            <td>Rs. @(total+200)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="calc-shipping margin-tb-60">
+                                    <h3>Select Payment Method</h3>
+                                    <div class="form-group">
+                                        <input type="radio" name="PaymentMethod" value="JazzCash" checked required />  Jazz Cash
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="radio" name="PaymentMethod" value="COD" checked required />  Cash on Delivery
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="radio" name="PaymentMethod" value="Paypal" checked required />  Paypal Online Payment
+                                    </div>
+                                </div>
+                                <!-- Carts total -->
+                            </div>
+                            <!-- End # Cart Total -->
+                            <!-- Shipping Address -->
+                            <div class="col-md-4">
+                                <div class="calc-shipping">
+                                    <h3>Shipping Details</h3>
+                                    <div class="form-group">
+                                        <input type="text" required class="form-control" placeholder="Full Name*" name="Name">
+                                        <input type="text" required class="form-control" placeholder="Address*" name="Address">
+                                        <input type="tel" required class="form-control" placeholder="Phone Number*" name="Phone">
+                                        <input type="email" class="form-control" placeholder="Email*" name="Email">
+                                        <button type="submit" class="btn form-control btn-black"> Order Now </button>
+                                    </div>
+                                </div>
+                                <!-- Shipping Address -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End myaccount -->
+    </div>
+    <!-- end of #content -->
+</form>

@@ -1,0 +1,67 @@
+﻿@model KingsCafe_V2.Models.FoodItem
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FoodItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CatFID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CatFID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalePrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalePrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            <img src="@Model.Image" width="100" height="100" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Edit","Adm_FoodItems" , new { id = Model.ItemID })" class="btn btn-primary glyphicon glyphicon-edit"> </a> |
+    <a href="@Url.Action("Index","Adm_FoodItems")" class="btn btn-primary glyphicon glyphicon-backward"> </a>
+</p>

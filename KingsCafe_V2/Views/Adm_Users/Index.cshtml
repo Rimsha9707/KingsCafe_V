@@ -1,0 +1,59 @@
+﻿@model IEnumerable<KingsCafe_V2.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create","Adm_Users")">Create</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit","Adm_Users", new { id = item.UserID })" class="btn btn-primary glyphicon glyphicon-edit"></a> |
+            <a href="@Url.Action("Details","Adm_Users", new { id = item.UserID })" class="btn btn-success glyphicon glyphicon-book"></a> |
+            <a href="@Url.Action("Delete","Adm_Users", new { id = item.UserID })" class="btn btn-danger glyphicon glyphicon-remove"></a>
+
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,52 @@
+﻿@model KingsCafe_V2.Models.Ingredient
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ingredient</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            <img src="@Model.Image" width="100" height="100" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Edit","Adm_Ingredients" , new { id = Model.IngredientID })" class="btn btn-primary glyphicon glyphicon-edit"> </a> |
+    <a href="@Url.Action("Index","Adm_Ingredients")" class="btn btn-primary glyphicon glyphicon-backward"> </a>
+
+</p>

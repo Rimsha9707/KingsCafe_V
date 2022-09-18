@@ -1,0 +1,185 @@
+﻿@using KingsCafe_V2.Models
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    dbModel db = new dbModel();
+}
+<div id="wrapper">
+    <!-- banner
+    ============================================= -->
+    <section class="banner dark">
+        <div id="contact-parallax">
+            <div class="bcg background8"
+                 data-center="background-position: 50% 0px;"
+                 data-bottom-top="background-position: 50% 100px;"
+                 data-top-bottom="background-position: 50% -100px;"
+                 data-anchor-target="#contact-parallax">
+                <div class="bg-transparent">
+                    <div class="banner-content">
+                        <div class="container">
+                            <div class="slider-content">
+                                <h1>CONTACT US</h1>
+                                <p>Get in touch</p>
+                                <ol class="breadcrumb">
+                                    <li><a href="index01.html">Home</a></li>
+                                    <li>Contact Us</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Banner content -->
+                </div>
+                <!-- End bg trnsparent -->
+            </div>
+        </div>
+        <!-- Service parallax -->
+    </section>
+    <!-- End Banner -->
+    <!-- Header
+    <!-- End header -->
+    <!-- Food Date blocks
+    ============================================= -->
+    <section id="slide2-02" class="date-block-dark text-center padding-100">
+        <div class="container date-blocks">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <!-- Block item -->
+                    <div class="block-item">
+                        <img src="~/Content/customer/img/lunch_dark.png" alt="">
+                        <h2>FASTFOODS</h2>
+                        <p>5.00 pm 5.00 am</p>
+                    </div>
+                    <!-- End Block item -->
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <!-- Block item -->
+                    <div class="block-item">
+                        <img src="~/Content/customer/img/dinner_dark.png" alt="">
+                        <h2>FRESHJUICIES</h2>
+                        <p>5.00 pm 5.00 am</p>
+                    </div>
+                    <!-- End Block item -->
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <!-- Block item -->
+                    <div class="block-item">
+                        <img src="~/Content/customer/img/dessert_dark.png" alt="">
+                        <h2>SHAKES</h2>
+                        <p>5.00 pm 5.00 am</p>
+                    </div>
+                    <!-- End Block item -->
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <!-- Block item -->
+                    <div class="block-item">
+                        <img src=" ~/Content/customer/img/breakfast_dark.png" alt="">
+                        <h2>TEA</h2>
+                        <p>5.00 pm 5.00 am</p>
+                    </div>
+                    <!-- End Block item -->
+                </div>
+
+
+
+            </div>
+        </div>
+    </section>
+    <!-- End date blocks-->
+    <div id="content">
+        <!-- RESERVATION
+        ============================================= -->
+        <section id="slide2-03" class="reservation dark home_2 text-center">
+            <!-- Bg Parallax -->
+            <div class="bcg background33"
+                 data-center="background-position: 50% 0px;"
+                 data-bottom-top="background-position: 50% 100px;"
+                 data-top-bottom="background-position: 50% -100px;"
+                 data-anchor-target="#slide2-03">
+                <!-- Bg Transparent -->
+                <div class="bg-transparent padding-100">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Head Title -->
+                            <div class="head_title">
+                                <i class="icon-intro"></i>
+                                <h1>Contact Us</h1>
+                            </div>
+                            <!-- End# Head Title -->
+                            <!-- Reservation form style2-->
+                            <form class="reserv_form reserv_style2"
+                                  action="~/Home/contactus" method="post">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <!-- Form group -->
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-6 col-sm-6 col-sx12">
+                                                        <input name="FEEDBACK_NAME"
+                                                               class="form-control" type="text" placeholder="Your Name *" required>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6 col-sx12">
+                                                        <input name="ADDRESS"
+                                                               class="form-control" type="text" placeholder="Address *">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End form group -->
+                                            <!-- Form Group -->
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-6 col-sm-6 col-sx12">
+                                                        <input name="WHATSAPP_NO"
+                                                               class="form-control" type="tel" placeholder="Whatsapp Number *" required>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6 col-sx12">
+                                                        <input name="PHONE_NO"
+                                                               class="form-control" type="tel" placeholder="Phone No *">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End form group -->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- form group -->
+                                        <div class="form-group">
+                                            <textarea name="FEEDBACK_DESCRIPTION"
+                                                      placeholder="Message"></textarea>
+                                        </div>
+                                        <!-- End form group -->
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row element">
+                                    <div class="loading2"></div>
+                                    <button class="btn btn-gold white"
+                                            type="submit">
+                                        CONTACT US
+                                    </button>
+                                </div>
+                            </form>
+                            <!-- End reserv home -->
+                            <div class="done2">
+                                <strong>Thank you!</strong> We have received your
+                                message.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End bg transparent -->
+                </div>
+                <!-- End Bg Parallax -->
+            </div>
+        </section>
+        <!-- End RESERVATION -->
+        <!-- Address content
+        ============================================= -->
+        <!-- End address content -->
+        <!-- Map
+        ============================================= -->
+        <div class="map">
+            <div id="map"></div>
+        </div>
+        <!-- End map -->
+    </div>
+    <!-- end of #content -->
+</div>

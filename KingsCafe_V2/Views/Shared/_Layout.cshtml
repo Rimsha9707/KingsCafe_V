@@ -1,0 +1,338 @@
+﻿@using KingsCafe_V2.Models
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from html.miraclestudio.design/majesty/index02.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Mar 2022 15:52:11 GMT -->
+<!-- Added by HTTrack -->
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Majesty by creative-wp - Responsive HTML5 template">
+    <meta name="author" content="creative-wp">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Your Title Page
+        ============================================= -->
+    <title>King's Cafe  </title>
+    <!-- Favicon Icons
+         ============================================= -->
+    <link rel="shortcut icon" href="~/content/customer/img/favicon/favicon.ico">
+    <!-- Standard iPhone Touch Icon-->
+    <link rel="apple-touch-icon" sizes="57x57" href="~/content/customer/img/favicon/apple-touch-icon-57x57.png">
+    <!-- Retina iPhone Touch Icon-->
+    <link rel="apple-touch-icon" sizes="114x114" href="~/content/customer/img/favicon/apple-touch-icon-114x114.png">
+    <!-- Standard iPad Touch Icon-->
+    <link rel="apple-touch-icon" sizes="72x72" href="~/content/customer/img/favicon/apple-touch-icon-72x72.png">
+    <!-- Retina iPad Touch Icon-->
+    <link rel="apple-touch-icon" sizes="144x144" href="~/content/customer/img/favicon/apple-touch-icon-144x144.png">
+    <!-- Bootstrap Links
+         ============================================= -->
+    <!-- Bootstrap CSS  -->
+    <link href="~/content/customer/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Plugins
+         ============================================= -->
+    <!-- Owl Carousal -->
+    <link rel="stylesheet" href="~/content/customer/stylesheets/owl.carousel.css">
+    <link rel="stylesheet" href="~/content/customer/stylesheets/owl.theme.css">
+    <!-- Animate -->
+    <link rel="stylesheet" href="~/content/customer/stylesheets/animate.css">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="~/content/customer/stylesheets/jquery.datetimepicker.css">
+    <!-- Pretty Photo -->
+    <link rel="stylesheet" href="~/content/customer/stylesheets/prettyPhoto.css">
+    <!-- Font awsome icons -->
+    <link rel="stylesheet" href="~/content/customer/stylesheets/font-awesome.min.css">
+    <!-- General Stylesheet
+        ============================================= -->
+    <!-- Custom Fonts Setup via Font-face CSS3 -->
+    <link href="~/content/customer/fonts/fonts.css" rel="stylesheet">
+    <!-- Main Template Styles -->
+    <link href="~/content/customer/stylesheets/main.css" rel="stylesheet">
+    <!-- Main Template Responsive Styles -->
+    <link href="~/content/customer/stylesheets/main-responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+          <script src="javascripts/libs/html5shiv.js"></script>
+          <script src="javascripts/libs/respond.min.js"></script>
+        <![endif]-->
+    @*toastr js*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+
+    @if (TempData["Message"] != null && (string)TempData["Message"] != "No")
+    {
+        <script type="text/javascript">
+                window.onload = function () {
+                    Swal.fire(
+                        '@TempData["State"]',
+                        '@TempData["Message"]',
+                        '@TempData["State"]')
+                };
+        </script>
+}
+
+
+    @if (TempData["msg"] != null)
+    {
+        <script src="~/Content/customer/javascripts/libs/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+        <script type="text/javascript">
+            toastr.success(' @TempData["msg"] ');
+
+        </script>
+
+
+    }
+
+    @if (TempData["error"] != null)
+    {
+        <script src="~/Content/customer/javascripts/libs/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+        <script type="text/javascript">
+            toastr.error(' @TempData["error"] ');
+
+        </script>
+    }
+
+
+
+
+    <!-- Loader
+          ============================================= -->
+    <div id="loader2">
+        <div class="loader-item">
+            <img src="~/content/customer/img/logoking.png" alt="" height="300" width="300">
+            <div class="sk-spinner sk-spinner-wave">
+                <div class="sk-rect1"></div>
+                <div class="sk-rect2"></div>
+                <div class="sk-rect3"></div>
+                <div class="sk-rect4"></div>
+                <div class="sk-rect5"></div>
+            </div>
+        </div>
+    </div>
+    <!-- End Loader -->
+    <!-- Document Wrapper
+        ============================================= -->
+    <div id="wrapper">
+
+
+        <!-- End Video background Youtube -->
+        <!-- Header Center
+        ============================================= -->
+        <header id="header" class="center-header">
+            <div class="container">
+                <div class="row">
+                    <div id="main-menu-trigger"><i class="fa fa-bars"></i></div>
+                    <!-- Logo
+                    ============================================= -->
+                    <div id="logo"> <a href="index02.html" class="light-logo">@*<img src="~/content/customer/img/logo.png" alt="Logo">*@</a> <a href="index02.html" class="dark-logo">@*<img src="~/content/customer/img/logo_dark.png" alt="Logo">*@</a> </div>
+                    <!-- #logo end -->
+                    <!-- Primary Navigation
+                    ============================================= -->
+                    <nav id="main-menu" class="dark menu-center">
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("index","home")">
+                                    <div>Home</div>
+                                </a>
+
+                            </li>
+                            <li class="mega-menu">
+                                <a href="@Url.Action("menu","home")">
+                                    <div>Menu</div>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="@Url.Action("About","home")">
+                                    <div>About Us</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("contact","home")">
+                                    <div>Contact</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("login","home")">
+                                    <div>Login</div>
+                                </a>
+                            </li>
+
+                        </ul>
+                        <!-- Top Cart
+                        ============================================= -->
+
+
+                        <div id="shop_cart">
+                            <a href="/Cart/Displaycart"><i class="fa fa-shopping-cart"></i><span></span></a>
+                        </div>
+
+                        <div id="shop_cart">
+                            <a href="#" id="shop_tigger"><i class="fa fa-shopping-cart"></i></a>
+                        </div>
+
+
+                    </nav>
+                    <!-- #main-menu end -->
+                </div>
+            </div>
+        </header>
+        <!-- End header -->
+        @*toastr notifications*@
+        @if (TempData["msg"] != null)
+        {
+            <script src="~/Content/Customer/javascripts/libs/jquery.min.js"></script>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+            <script type="text/javascript">
+ toastr.success(' @TempData["msg"] ');
+            </script>
+        }
+        @*@if (TempData["error"] != null)
+                   {
+                       <script src="~/Content/customer/javascripts/libs/jquery.min.js"></script>
+                       <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+                       <script type="text/javascript">
+            toastr.error(' @TempData["error"] ');
+                       </script>*@
+
+
+        @RenderBody();
+
+
+        <footer id="footer" class="padding-50 dark">
+            <div class="container">
+                <div class="row">
+                    @*Our location !*@
+                    <div class="col-md-6 col-sm-6  our_location">
+                        <h3>Our Location</h3>
+                        <p><b>King's Cafe : </b></p>
+                        <span>Canal View City Housing road, near Canal View Main Gate Gujranwala</span>
+                        <p class="mt30"><b>Call for Reservations: </b><span>0321-9644664</span></p>
+                        <p><b>E-mail: </b><span>kingscafe12@gmail.com</span> </p>
+                        <ul class="social mt30">
+                            <li><a href="#" data-toggle="tooltip" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+
+                        </ul>
+                    </div>
+
+                    <!-- Latest Post !-->
+                    <!--<div class="col-md-3 col-sm-6 col-xs-12 latest_post ">
+                    <h3>Lastest Post</h3>
+                    <div class="media">
+                        <div class="media-left"> <a href="blog_single_image.html"> <img class="media-object" rel="prettyPhoto" src="~/content/customer/img/post_thumb.jpg" alt="post thumb"> </a> </div>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="blog_single_image.html">Thai Tanic</a></h4>
+                            Lorem ipsum dolor sit amet, sectetur adipiscing elit.
+                        </div>
+                    </div>-->
+                    <!-- End media -->
+                    <!--<div class="media">
+                        <div class="media-left"> <a href="blog_single_image.html"> <img class="media-object" rel="prettyPhoto" src="~/content/customer/img/post_thumb2.jpg" alt="post thumb"> </a> </div>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="blog_single_image.html">Work & Roll</a></h4>
+                            Lorem ipsum dolor sit amet, sectetur adipiscing elit.
+                        </div>
+                    </div>-->
+                    <!-- End media -->
+                    <!--<div class="media">
+                        <div class="media-left"> <a href="blog_single_image.html"> <img class="media-object" rel="prettyPhoto" src="~/content/customer/img/post_thumb3.jpg" alt="post thumb"> </a> </div>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="blog_single_image.html">Blog Name</a></h4>
+                            Lorem ipsum dolor sit amet, sectetur adipiscing elit.
+                        </div>
+                    </div>-->
+                    <!-- End media -->
+                    <!--</div>-->
+                    <!-- End latest Post -->
+                    <!-- Opening time !-->
+                    <div class="col-md-3 col-sm-6 col-xs-12 opening_time">
+                        <h3>Opening Times</h3>
+                        <ul>
+                            <li>
+                                <p>
+                                    Monday
+                                    <time datetime="00:01">5 pm - 5 am</time>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Tuesday
+                                    <time datetime="00:01">5 pm - 5 am</time>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Wednesday
+                                    <time datetime="00:01">5 pm - 5 am</time>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Thursday
+                                    <time datetime="00:01">5 pm - 5 am</time>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Friday
+                                    <time datetime="00:01">5 pm - 5 am</time>
+                                </p>
+                            </li>
+                            <li>
+                                <p>Saturday <span class="label label-default">5 pm - 5 am</span></p>
+                            </li>
+                            <li>
+                                <p>
+                                    Sunday
+                                    <time datetime="00:01">5 pm - 5 am</time>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End opening time -->
+                    <!-- Flickr !-->
+                    <div class="col-md-3 col-sm-6 col-xs-12 flickr">
+                        @*<h3>Flickr Photos</h3>*@
+                        <ul id="flickrbox" class="thumbs">
+                        </ul>
+                    </div>
+                    <!-- End flickr -->
+                </div>
+
+                <!-- End container -->
+                <!-- Footer logo !-->
+                <div class="footer_logo text-center">
+                    @*<img src="~/content/customer/img/footer_logo.png" alt="logo">*@
+                    <p> ALL RIGHT RESERVED. DESIGNED BY <a target="_blank" href="">CREATIVE King's Cafe</a></p>
+                </div>
+                <!-- End Footer logo !-->
+            </div>
+        </footer>
+        <!-- End footer -->
+        <!--  scroll to top of the page-->
+        <a href="#" id="scroll_up"><i class="fa fa-angle-up"></i></a>
+    </div>
+    <!-- End wrapper -->
+    <!-- Core JS Libraries -->
+    <script src="~/content/customer/javascripts/libs/jquery.min.js" type="text/javascript"></script>
+    <script src="~/content/customer/javascripts/libs/plugins.js"></script>
+    <!-- JS Plugins -->
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script src="~/content/customer/javascripts/libs/modernizr.js"></script>
+    <!-- JS Custom Codes -->
+    <script src="~/content/customer/javascripts/custom/main.js"></script>
+</body>
+
+<!-- Mirrored from html.miraclestudio.design/majesty/index02.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Mar 2022 15:53:04 GMT -->
+</html>

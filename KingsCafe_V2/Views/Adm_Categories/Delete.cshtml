@@ -1,0 +1,50 @@
+﻿@model KingsCafe_V2.Models.Category
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Category</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            Image
+        </dt>
+
+        <dd>
+            <img src="@Model.Image" width="100" height="100" />
+        </dd>
+
+       
+        <dt>
+            Status
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Delete" class="btn btn-danger" /> |
+    <a href="@Url.Action("Index","Adm_Categories") " class="btn btn-primary glyphicon glyphicon-backward"> </a>
+</div>
+    }
+</div>
