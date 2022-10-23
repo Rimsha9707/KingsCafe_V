@@ -272,6 +272,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminsideController.cs" />
     <Compile Include="Controllers\Adm_OrdersController.cs" />
     <Compile Include="Controllers\Adm_FoodItemsController.cs" />
     <Compile Include="Controllers\Adm_CategoriesController.cs" />
@@ -279,6 +280,7 @@
     <Compile Include="Controllers\Adm_UsersController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -290,6 +292,7 @@
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\OrderDetail_VM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Admin\assets\bundles\c3.bundle.js" />
@@ -2134,6 +2137,15 @@
     <Content Include="Views\Home\ShoppingCart.cshtml" />
     <Content Include="Views\Home\Checkout.cshtml" />
     <Content Include="Views\Home\OrderConfirmed.cshtml" />
+    <Content Include="Views\Reports\SaleReport.cshtml" />
+    <Content Include="Views\Adminside\DeliveredOrders.cshtml" />
+    <Content Include="Views\Adminside\Invoice.cshtml" />
+    <Content Include="Views\Adminside\NewOrders.cshtml" />
+    <Content Include="Views\Adminside\ProceedOrders.cshtml" />
+    <Content Include="Views\Reports\ViewInvoice.cshtml" />
+    <Content Include="Views\Adminside\SaleReport.cshtml" />
+    <Content Include="Views\Adminside\ViewInvoice.cshtml" />
+    <Content Include="Views\Reports\PLReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

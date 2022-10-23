@@ -1,0 +1,63 @@
+﻿@model IEnumerable<KingsCafe_V2.Models.Order>
+@using KingsCafe_V2.Models;
+@{
+    ViewBag.Title = "NewOrders";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3 class="center"> New Orders</h3>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            Contact
+        </th>
+
+        <th>
+            Status
+        </th>
+        <th>
+            Date
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @item.OrderDate.ToLongDateString()
+            </td>
+            <td>
+                <a href="@Url.Action("Invoice","Adminside", new { id= item.OrderID })" class="btn btn-primary">Invoice</a>
+                <a href="@Url.Action("Sendtoproceed","Adminside", new { id= item.OrderID })" class="btn btn-primary">Update To Proceed</a>
+            </td>
+        </tr>
+    }
+
+</table>

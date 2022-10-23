@@ -1,0 +1,62 @@
+﻿
+@model IEnumerable<KingsCafe_V2.Models.Order>
+@using KingsCafe_V2.Models;
+@{
+    ViewBag.Title = "NewOrders";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    decimal total = 0;
+}
+
+<h3 class="center">Invoice</h3>
+<table class=" table table-bordered">
+    <tr>
+        <td> <b>Name</b>   </td>
+        <td> @Model.ORDER_CUSTOMER_NAME </td>
+        <td> <b>Address</b>  </td>
+        <td> @Model.ORDER_CUSTOMER_ADDRESS </td>
+        <td>  <b>Contact</b>  </td>
+        <td> @Model.ORDER_CUSTOMER_CONTACT </td>
+    </tr>
+    <tr>
+        <td> <b>Status</b>  </td>
+        <td> @Model.ORDER_STATUS </td>
+        <td> <b>Date</b> </td>
+        <td> @Model.ORDER_DATE.ToLongDateString() </td>
+
+    </tr>
+</table>
+
+<table class=" table table-bordered">
+    <tr>
+        <td><b>Product Name</b> </td>
+        <td> <b>Price</b> </td>
+        <td> <b>Quantity</b></td>
+        <td><b>Sub Total</b></td>
+
+    </tr>
+    @foreach (var item in Model.tblOrderDetails)
+    {
+        total += (item.ORDER_DETAILS_PRICE * item.ORDER_DETAILS_QUANTITY);
+        <tr>
+            <td>@item.tblFoodProduct.FOOD_PRODUCTS_NAME </td>
+            <td>@item.ORDER_DETAILS_PRICE</td>
+            <td>@item.ORDER_DETAILS_QUANTITY</td>
+            <td>@(item.ORDER_DETAILS_PRICE*item.ORDER_DETAILS_QUANTITY)</td>
+
+        </tr>
+    }
+    <tr>
+        <td colspan="3"><b>Total</b></td>
+        <td><b>@total</b></td>
+    </tr>
+
+    <tr>
+
+        <td>
+            <a href="@Url.Action("NewOrders","Adminside")" class="btn btn-primary">Back to list</a>
+        </td>
+    </tr>
+</table>
+
+

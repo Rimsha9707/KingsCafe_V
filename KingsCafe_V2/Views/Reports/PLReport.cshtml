@@ -1,0 +1,28 @@
+﻿@model IEnumerable<KingsCafe_V2.ViewModel.OrderDetail_VM>
+@{
+    ViewBag.Title = "PL Report";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>PL Report</h2>
+<hr />
+<table class="table table-bordered">
+    <tr>
+        <td>Name</td>
+        <td>Name</td>
+        <td>Name</td>
+        <td>Name</td>
+        <td>Name</td>
+        <td>Name</td>
+        <td>Name</td>
+        <td>Name</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td></td>
+            <td>@item.CatFID.Name</td>
+        </tr>
+    }
+</table>
+

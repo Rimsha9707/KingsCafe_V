@@ -1,0 +1,112 @@
+﻿@model IEnumerable<KingsCafe_V2.Models.Order>
+@using KingsCafe_V2.Models;
+@{
+    ViewBag.Title = "NewOrders";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@Html.Raw(TempData["msg"])
+<h3 class="center"> Sale Report</h3>
+<form action="/Reports/SaleReport" method="post">
+    <table class="table">
+        <tr>
+            <td> <b> From Date: </b> </td>
+            <td>
+                <input name="FromDate" class="form-control" type="date" />
+            </td>
+            <td> <b>To Date:</b> </td>
+            <td>
+                <input name="ToDate" class="form-control" type="date" />
+            </td>
+        </tr>
+        <tr>
+            <td> <b> Select Status </b> </td>
+            <td>
+                <select class="form-control" name="Status">
+                    <option>Select Status</option>
+                    <option>Pending</option>
+                    <option>Ready</option>
+                    <option>Delivered</option>
+                    <option>Cancelled</option>
+                </select>
+            </td>
+            <td> <b> Select Product </b> </td>
+            <td>
+                <input name="Customer" placeholder="Search By Name" class="form-control" type="text" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" class="btn btn-block btn-success" value="Generate" />
+            </td>
+        </tr>
+    </table>
+</form>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            Order ID
+        </th>
+        <th>
+            Order Customer Name
+        </th>
+        <th>
+            Order Customer Address
+        </th>
+        <th>
+            Order Customer Contact
+        </th>
+
+        <th>
+            Order Status
+        </th>
+        <th>
+            Order Date
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @item.OrderDate.ToLongDateString()
+            </td>
+           
+            <td>
+                <!-- Split button -->
+                <div class="btn-group">
+                    <a href="/Reports/ViewInvoice/@item.OrderID" type="button" class="btn btn-primary">Invoice</a>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/Reports/Process?id=@item.OrderID&act=Pending">Pending</a></li>
+                        <li><a href="/Reports/Process?id=@item.OrderID&act=Ready">Ready</a></li>
+                        <li><a href="/Reports/Process?id=@item.OrderID&act=Delivered">Delivered</a></li>
+                        <li><a href="/Reports/Process?id=@item.OrderID&act=Cancelled">Cancelled</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/Reports/Process?id=@item.OrderID&act=Delete">Delete</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>
