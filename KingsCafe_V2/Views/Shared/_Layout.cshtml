@@ -1,5 +1,7 @@
 ﻿@using KingsCafe_V2.Models
-
+@{ 
+    List<CartItem> pro = (List<CartItem>)Session["Cart"];
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -169,16 +171,23 @@
 
                         </ul>
                         <!-- Top Cart
-                        ============================================= -->
+       ============================================= -->
+                        @if (pro != null)
+                        {
+                            <div id="shop_cart">
+                                <a href="/Home/ShoppingCart" title="Cart"><i class="fa fa-shopping-cart"></i><span>@pro.Count()</span></a>
 
+                            </div>
+                        }
+                        else
+                        {
 
-                        <div id="shop_cart">
-                            <a href="/Cart/Displaycart"><i class="fa fa-shopping-cart"></i><span></span></a>
-                        </div>
+                            <div id="shop_cart">
+                                <a href="#" id="shop_tigger" title="Cart"><i class="fa fa-shopping-cart"></i></a>
 
-                        <div id="shop_cart">
-                            <a href="#" id="shop_tigger"><i class="fa fa-shopping-cart"></i></a>
-                        </div>
+                            </div>
+                        }
+                        <!-- End shop cart -->
 
 
                     </nav>
@@ -197,13 +206,7 @@
  toastr.success(' @TempData["msg"] ');
             </script>
         }
-        @*@if (TempData["error"] != null)
-                   {
-                       <script src="~/Content/customer/javascripts/libs/jquery.min.js"></script>
-                       <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-                       <script type="text/javascript">
-            toastr.error(' @TempData["error"] ');
-                       </script>*@
+     
 
 
         @RenderBody();
@@ -226,35 +229,7 @@
                         </ul>
                     </div>
 
-                    <!-- Latest Post !-->
-                    <!--<div class="col-md-3 col-sm-6 col-xs-12 latest_post ">
-                    <h3>Lastest Post</h3>
-                    <div class="media">
-                        <div class="media-left"> <a href="blog_single_image.html"> <img class="media-object" rel="prettyPhoto" src="~/content/customer/img/post_thumb.jpg" alt="post thumb"> </a> </div>
-                        <div class="media-body">
-                            <h4 class="media-heading"><a href="blog_single_image.html">Thai Tanic</a></h4>
-                            Lorem ipsum dolor sit amet, sectetur adipiscing elit.
-                        </div>
-                    </div>-->
-                    <!-- End media -->
-                    <!--<div class="media">
-                        <div class="media-left"> <a href="blog_single_image.html"> <img class="media-object" rel="prettyPhoto" src="~/content/customer/img/post_thumb2.jpg" alt="post thumb"> </a> </div>
-                        <div class="media-body">
-                            <h4 class="media-heading"><a href="blog_single_image.html">Work & Roll</a></h4>
-                            Lorem ipsum dolor sit amet, sectetur adipiscing elit.
-                        </div>
-                    </div>-->
-                    <!-- End media -->
-                    <!--<div class="media">
-                        <div class="media-left"> <a href="blog_single_image.html"> <img class="media-object" rel="prettyPhoto" src="~/content/customer/img/post_thumb3.jpg" alt="post thumb"> </a> </div>
-                        <div class="media-body">
-                            <h4 class="media-heading"><a href="blog_single_image.html">Blog Name</a></h4>
-                            Lorem ipsum dolor sit amet, sectetur adipiscing elit.
-                        </div>
-                    </div>-->
-                    <!-- End media -->
-                    <!--</div>-->
-                    <!-- End latest Post -->
+                    
                     <!-- Opening time !-->
                     <div class="col-md-3 col-sm-6 col-xs-12 opening_time">
                         <h3>Opening Times</h3>
@@ -303,7 +278,7 @@
                     <!-- End opening time -->
                     <!-- Flickr !-->
                     <div class="col-md-3 col-sm-6 col-xs-12 flickr">
-                        @*<h3>Flickr Photos</h3>*@
+                        
                         <ul id="flickrbox" class="thumbs">
                         </ul>
                     </div>
@@ -313,7 +288,7 @@
                 <!-- End container -->
                 <!-- Footer logo !-->
                 <div class="footer_logo text-center">
-                    @*<img src="~/content/customer/img/footer_logo.png" alt="logo">*@
+                   
                     <p> ALL RIGHT RESERVED. DESIGNED BY <a target="_blank" href="">CREATIVE King's Cafe</a></p>
                 </div>
                 <!-- End Footer logo !-->

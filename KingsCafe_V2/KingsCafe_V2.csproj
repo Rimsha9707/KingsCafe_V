@@ -286,10 +286,13 @@
     </Compile>
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\CurrentAdmin.cs" />
     <Compile Include="Models\FoodItem.cs" />
     <Compile Include="Models\Ingredient.cs" />
+    <Compile Include="Models\ItemIngLink.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
+    <Compile Include="Models\OrderProIng.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\OrderDetail_VM.cs" />

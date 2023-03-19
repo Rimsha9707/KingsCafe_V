@@ -35,6 +35,7 @@ namespace KingsCafe_V2.Controllers
                Name = item.Object.Name,
                Password = item.Object.Password,
                Status = item.Object.Status,
+               Image = item.Object.Image,
                Type = item.Object.Type,
 
            }).ToList();
@@ -60,7 +61,7 @@ namespace KingsCafe_V2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(User item)
+        public async Task<ActionResult> Create(User item, HttpPostedFileBase imgInp)
         {
             int LastID, NewID = 1;
             var lastrecord = (await firebaseDatabase.Child("User").OnceAsync<User>()).FirstOrDefault();
@@ -69,8 +70,13 @@ namespace KingsCafe_V2.Controllers
                 LastID = (await firebaseDatabase.Child("User").OnceAsync<User>()).Max(a => a.Object.UserID);
                 NewID = ++LastID;
             }
-
+            var stroageImage = await new FirebaseStorage("kingscafeapp.appspot.com")
+                 .Child("ItemImages")
+                 .Child(NewID + "_" + item.Name + ".jpg")
+                 .PutAsync(imgInp.InputStream);
+            string imgurl = stroageImage;
             item.UserID = NewID;
+            item.Image = imgurl;
             await firebaseDatabase.Child("User").PostAsync(item);
             return RedirectToAction("Index");
         }
@@ -87,8 +93,18 @@ namespace KingsCafe_V2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(User item)
+        public async Task<ActionResult> Edit(User item, HttpPostedFileBase imgInp)
         {
+            if (imgInp != null)
+            {
+                var stroageImage = await new FirebaseStorage("kingscafeapp.appspot.com")
+                      .Child("ItemImages").Child(item.UserID + "_" + item.Name + ".jpg")
+                      .PutAsync(imgInp.InputStream);
+                string imgurl = stroageImage;
+
+                item.Image = imgurl;
+            }
+
             var toUpdatePerson = (await firebaseDatabase.Child("User").OnceAsync<User>()).Where(a => a.Object.UserID == item.UserID).FirstOrDefault();
 
             await firebaseDatabase.Child("User").Child(toUpdatePerson.Key).PutAsync(item);

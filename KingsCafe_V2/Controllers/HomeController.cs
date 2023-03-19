@@ -1,10 +1,12 @@
 ﻿using Firebase.Database;
 using Firebase.Database.Query;
 using Firebase.Storage;
+using KingsCafe.Models;
 using KingsCafe_V2.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -91,7 +93,7 @@ namespace KingsCafe_V2.Controllers
                 Session["Cart"] = Cart;
             }
 
-            return RedirectToAction("ShoppingCart");
+            return RedirectToAction("Menu");
         }
         public ActionResult Remove(int id)
         {
@@ -219,7 +221,10 @@ namespace KingsCafe_V2.Controllers
 
             }
 
-
+            //================SMS Sending code==================
+            String api = "https://lifetimesms.com/json?api_token=a02ce8b6084d9365748ab51acfaaed279f2bf57956&api_secret=KingsCafe&to=" + Phone + "&from=King's Cafe&message=Your Order is Booked Successfully. Thanks for Shopping here. Regards: King's Cafe";
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(api);
+            var httpResponse = (HttpWebResponse)req.GetResponse();
 
             //EMPTY CART======================================================================
             Session["Cart"] = null;
@@ -255,10 +260,10 @@ namespace KingsCafe_V2.Controllers
 
             ViewBag.Items = Cart;
             var order = (await firebaseDatabase.Child("Order").OnceAsync<Order>()).FirstOrDefault(x => x.Object.OrderID == id);
-            
+
             TempData["State"] = "success";
             TempData["Message"] = "Order has confirmed. It will be delivered soon order details are as under";
-            
+
             return View(order.Object);
         }
 
@@ -268,6 +273,24 @@ namespace KingsCafe_V2.Controllers
         {
 
             return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> login(String Email, String Password)
+        {
+
+            var check = (await firebaseDatabase.Child("User").OnceAsync<User>()).FirstOrDefault(x => x.Object.Email == Email && x.Object.Password == Password);
+
+            if (check.Object.Type == "Admin")
+            {
+                CurrentAdmin.Current_Admin = check.Object;
+                return RedirectToAction("IndexAdmin");
+            }
+            else
+                return View();
+            
+
+
         }
 
         public ActionResult Contact()

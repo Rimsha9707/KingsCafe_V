@@ -3,7 +3,6 @@
 @{ 
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 
-    dbModel db = new dbModel();
 
     }
 <!-- Right side column. Contains the navbar and content of the page -->
@@ -16,7 +15,7 @@
             <!-- small box -->
             <div class="small-box bg-aqua">
                 <div class="inner">
-                    <h3>@db.Orders.Where(x => x.Status == "Booked").Count()</h3>
+                    @*<h3>@db.Orders.Where(x => x.Status == "Booked").Count()</h3>*@
                     <p>New Orders</p>
                 </div>
                 <div class="icon">
@@ -29,7 +28,7 @@
             <!-- small box -->
             <div class="small-box bg-green">
                 <div class="inner">
-                    <h3>@db.Orders.Where(x => x.Status == "Ready").Count()</h3>
+                    @*<h3>@db.Orders.Where(x => x.Status == "Ready").Count()</h3>*@
                     <p>Proceed Orders</p>
                 </div>
                 <div class="icon">
@@ -42,7 +41,7 @@
             <!-- small box -->
             <div class="small-box bg-yellow">
                 <div class="inner">
-                    <h3>@db.Orders.Where(x => x.Status == "Delivered").Count()</h3>
+                    @*<h3>@db.Orders.Where(x => x.Status == "Delivered").Count()</h3>*@
                     <p>Sale Report</p>
                 </div>
                 <div class="icon">

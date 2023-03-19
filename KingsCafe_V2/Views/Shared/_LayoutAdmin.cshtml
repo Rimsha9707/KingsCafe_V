@@ -1,4 +1,4 @@
-﻿
+﻿@using KingsCafe.Models
 
 <!DOCTYPE html>
 <html>
@@ -54,7 +54,8 @@
                                 <script type="text/javascript">
             toastr.success(' @TempData["msg"] ');
 
-                                </script>}
+                                </script>
+}
 
         @if (TempData["error"] != null)
         {
@@ -64,7 +65,8 @@
                                 <script type="text/javascript">
             toastr.error(' @TempData["error"] ');
 
-                                </script>}
+                                </script>
+}
 
 
         <header class="main-header">
@@ -318,16 +320,36 @@
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
                 <!-- Sidebar user panel -->
-                <div class="user-panel">
+                <div class="user-panel" style="background-color:black;color:white">
                     <div class="pull-left image">
-                        <img src="~/content/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                        @if (CurrentAdmin.Current_Admin != null)
+                        {
+            <img src="@Url.Content(CurrentAdmin.Current_Admin.Image)" class="img-circle" alt="User Image" /> }
+        else
+        {
+<img src="~/Content/admin/dist/img/avatar.png" class="img-circle" alt="User Image" />}
                     </div>
                     <div class="pull-left info">
-                        <p>Arbab Mazhar</p>
-
+                        @if (CurrentAdmin.Current_Admin != null)
+                        {
+            <p>@CurrentAdmin.Current_Admin.Name</p> }
+        else
+        {
+<p>Admin</p>}
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
+
+                @*<div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="~/content/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                        </div>
+                        <div class="pull-left info">
+                            <p>Arbab Mazhar</p>
+
+                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>*@
                 <!-- search form -->
                 <form action="#" method="get" class="sidebar-form">
                     <div class="input-group">
@@ -340,7 +362,7 @@
                 <!-- /.search form -->
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
-                    <li class=""><a href="/Users/Admin"><i class="fa fa-dashboard"></i> <span>Home</span></a></li>
+                    <li class=""><a href="/Home/IndexAdmin"><i class="fa fa-dashboard"></i> <span>Home</span></a></li>
                     <li class=""><a href="/Adm_Categories/"><i class="fa fa-dashboard"></i> <span>Manage Categories</span></a></li>
                     <li class=""><a href="/Adm_FoodItems/"><i class="fa fa-dashboard"></i> <span>Manage Products</span></a></li>
                     <li class=""><a href="/Adm_Ingredients/"><i class="fa fa-dashboard"></i> <span>Manage ingredients</span></a></li>
